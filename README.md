@@ -1,7 +1,7 @@
 # Safeway Saver
 
 A Flask web app that helps users save money by:
-- Scraping current Safeway grocery deals
+- Scraping current Safeway grocery deals (https://www.safeway.com/weeklyad)
 - Matching those deals to the user's weekly shopping list
 - Recommending sale items they've purchased in the past
 
