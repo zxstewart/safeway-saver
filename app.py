@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 from utils.scraper import scrape_safeway_deals
-from utils.recommender import update_history, recommend_from_history
+from utils.db import init_db, update_history, get_recommended_items
 import json
 
 app = Flask(__name__)
+init_db()
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -20,8 +21,9 @@ def index():
 
         with open("data/safeway_deals.json") as f:
             deals = json.load(f)
+
         matched_items = [d for d in deals if d["item"] in user_list]
-        recommendations = recommend_from_history(deals)
+        recommendations = get_recommended_items(deals)
 
     return render_template("index.html",
                            shopping_list=user_list,
